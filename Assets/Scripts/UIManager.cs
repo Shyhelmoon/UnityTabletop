@@ -18,10 +18,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button loadMapButton;
     [SerializeField] private Button addTokenButton;
     [SerializeField] private Button deleteTokenButton;
+    [SerializeField] private Button clearAllTokensButton;
     
     [Header("Settings")]
     private bool gridVisible = true;
     private bool tokenSpawnMode = false;
+
+
+
 
     void Start()
     {
@@ -39,6 +43,9 @@ public class UIManager : MonoBehaviour
         
         if (deleteTokenButton != null)
             deleteTokenButton.onClick.AddListener(DeleteSelectedToken);
+
+        if (clearAllTokensButton != null)
+            clearAllTokensButton.onClick.AddListener(ClearAllTokensWithConfirm);
         
         UpdateGridButtonText();
     }
@@ -116,6 +123,17 @@ public class UIManager : MonoBehaviour
         if (tokenManager != null)
         {
             tokenManager.DeleteSelectedToken();
+        }
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void ClearAllTokensWithConfirm()
+    {
+        if (tokenManager != null)
+        {
+            // Simple confirmation - just clear
+            // (We can add a proper dialog later if needed)
+            tokenManager.ClearAllTokens();
         }
         EventSystem.current.SetSelectedGameObject(null);
     }

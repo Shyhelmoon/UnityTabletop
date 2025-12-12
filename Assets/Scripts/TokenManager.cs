@@ -132,4 +132,23 @@ public class TokenManager : MonoBehaviour
 
     public Token GetSelectedToken() => selectedToken;
     public List<Token> GetAllTokens() => new List<Token>(allTokens);
+
+    public void ClearAllTokens()
+{
+    // Make a copy of the list since we're modifying it
+    List<Token> tokensToRemove = new List<Token>(allTokens);
+    
+    foreach (Token token in tokensToRemove)
+    {
+        if (token != null)
+        {
+            Destroy(token.gameObject);
+        }
+    }
+    
+    allTokens.Clear();
+    selectedToken = null;
+    
+    Debug.Log("All tokens cleared");
+}
 }

@@ -2832,6 +2832,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649173748}
   m_CullTransparentMesh: 1
+--- !u!1 &668127331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668127333}
+  - component: {fileID: 668127332}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &668127332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668127331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd0dc5250c51cb438e1d904ff59528c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameData
+  isQuickStart: 1
+  isHost: 1
+  sessionId: 
+  selectedMapPath: 
+  campaignId: 
+  playerName: Player
+  playerColor: {r: 0, g: 0, b: 1, a: 1}
+--- !u!4 &668127333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668127331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 791, y: 854.2035, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &672352745
 GameObject:
   m_ObjectHideFlags: 0
@@ -5900,7 +5951,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1349529431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7023,7 +7074,6 @@ GameObject:
   - component: {fileID: 1535385614}
   - component: {fileID: 1535385613}
   - component: {fileID: 1535385618}
-  - component: {fileID: 1535385617}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7120,25 +7170,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1535385617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535385612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd0dc5250c51cb438e1d904ff59528c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameData
-  isQuickStart: 1
-  isHost: 1
-  sessionId: 
-  selectedMapPath: 
-  campaignId: 
-  playerName: Player
-  playerColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!114 &1535385618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10303,3 +10334,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1535385616}
   - {fileID: 561469479}
+  - {fileID: 668127333}

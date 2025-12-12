@@ -4,6 +4,12 @@ using System.IO;
 
 public class MapManager : MonoBehaviour
 {
+    [Header("Built-in Maps")]
+    [SerializeField] private string[] builtInMapNames = new string[] 
+    {
+        "Demo Map"
+        
+    };
     [Header("Map Display")]
     [SerializeField] private SpriteRenderer mapRenderer;
     [SerializeField] private GridManager gridManager;
@@ -77,6 +83,30 @@ public class MapManager : MonoBehaviour
         texture.Apply();
         
         ApplyTextureAsMap(texture, "Default Map");
+    }
+    
+    public void LoadBuiltInMap(int index)
+    {
+        if (index < 0 || index >= builtInMapNames.Length)
+        {
+            Debug.LogError("Invalid map index");
+            return;
+        }
+        
+        string mapName = builtInMapNames[index];
+        
+        // Load from Resources folder
+        Texture2D texture = Resources.Load<Texture2D>($"Maps/{mapName}");
+        
+        if (texture != null)
+        {
+            ApplyTextureAsMap(texture, mapName);
+        }
+        else
+        {
+            Debug.LogError($"Could not find map: {mapName} in Resources/Maps/");
+            LoadDefaultMap();
+        }
     }
 
     public void LoadMapFromPath(string path)

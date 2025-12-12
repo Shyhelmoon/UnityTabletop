@@ -99,16 +99,23 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void StartQuickGame()
     {
+        Debug.Log("=== StartQuickGame called ===");
         PlayButtonSound();
         
-        // Set defaults
-        GameData.Instance.ResetToDefaults();
-        GameData.Instance.isQuickStart = true;
+        if (GameData.Instance != null)
+        {
+            GameData.Instance.ResetToDefaults();
+            GameData.Instance.isQuickStart = true;
+            Debug.Log("GameData set");
+        }
         
-        // Load immediately
-        LoadGameScene();
+        Debug.Log("About to load scene: " + gameSceneName);
+        
+        // Simple direct load - no async, no loading panel
+        SceneManager.LoadScene(gameSceneName);
+        
+        Debug.Log("LoadScene called");
     }
-
     public void StartWithMap(string mapPath)
     {
         PlayButtonSound();
