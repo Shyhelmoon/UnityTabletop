@@ -56,43 +56,39 @@ public class GridManager : MonoBehaviour
 
     void CreateLine(Vector3 start, Vector3 end, Transform parent)
     {
-        start.z = -1f;  // In front of map
+        start.z = -1f;
         end.z = -1f;
         
         GameObject lineObject = new GameObject("GridLine");
         lineObject.transform.parent = parent;
         lineObject.transform.position = Vector3.zero;
-        lineObject.layer = 0; // Default layer
         
         LineRenderer line = lineObject.AddComponent<LineRenderer>();
         
-        // Create material with Unlit/Color shader
-        Material lineMaterial = new Material(Shader.Find("Unlit/Color"));
-        lineMaterial.color = gridColor;
-        line.material = lineMaterial;
+        // Load material from Resources - this WILL be in build
+        Material lineMaterial = Resources.Load<Material>("GridLineMaterial");
+        if (lineMaterial == null)
+        {
+            Debug.LogError("GridLineMaterial not found in Resources!");
+            lineMaterial = new Material(Shader.Find("Sprites/Default"));
+        }
         
+        line.material = lineMaterial;
         line.startColor = gridColor;
         line.endColor = gridColor;
         
         line.widthMultiplier = gridLineWidth;
-        line.widthCurve = AnimationCurve.Linear(0, 1, 1, 1);
         
         line.positionCount = 2;
         line.SetPosition(0, start);
         line.SetPosition(1, end);
         
-        // Try BOTH sorting layer AND sorting order
-        line.sortingLayerName = "Grid";
-        line.sortingOrder = 100; // Very high to ensure it's on top
+        line.sortingLayerName = "Default";
+        line.sortingOrder = 100;
         line.useWorldSpace = false;
         
-        // Make sure it renders on top
         line.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         line.receiveShadows = false;
-        line.alignment = LineAlignment.View; // Changed from TransformZ
-        
-        // Debug log
-        Debug.Log($"Created grid line - Sorting Layer: {line.sortingLayerName}, Order: {line.sortingOrder}");
     }
 
     // Keep all your other methods (WorldToGrid, GridToWorld, etc.)
@@ -167,7 +163,7 @@ public class GridManager : MonoBehaviour
             CreateGridLines();
         }
     }
-    
+
 // Helpers
     public int GetGridWidth() { return gridWidth; }
     public int GetGridHeight() { return gridHeight; }
